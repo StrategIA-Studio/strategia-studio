@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Reset ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  background: transparent;
+  scroll-behavior: auto;
+  cursor: none;
+}
+
+body {
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-barlow), "Barlow", sans-serif;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-barlow), "Barlow", sans-serif;
+  font-weight: 900;
+  line-height: 0.88;
+}
+
+a, button { cursor: none; color: inherit; text-decoration: none; }
+
+::selection { background: #e8604a; color: #fff; }
+
+/* ─── Custom cursor ──────────────────────────────── */
+.cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s, height 0.15s, background 0.15s;
+  mix-blend-mode: difference;
+}
+
+.cursor-circle {
+  position: fixed;
+  top: 0; left: 0;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.7);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s, height 0.25s, border-color 0.25s;
+}
+
+/* ─── Scrollbar minimale ─────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.32); }
+* { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.18) transparent; }
+
+/* ─── Performance ────────────────────────────────── */
+.h-word, .m-text, .m-label, .m-btn, .m-unique,
+.w-title, .w-btn, .w-item,
+.c-title, .c-sub, .c-form, .c-bar, .c-mark {
+  will-change: transform, opacity;
+}
+
+/* ─── Mobile cursor off ──────────────────────────── */
+@media (pointer: coarse) {
+  html, body, a, button { cursor: auto; }
+  .cursor-dot, .cursor-circle { display: none; }
+}
+
+/* ─── Mobile performance ─────────────────────────── */
+@media (max-width: 768px) {
+  .h-word, .m-text, .m-label, .m-btn, .m-unique,
+  .w-title, .w-btn, .w-item,
+  .c-title, .c-sub, .c-form, .c-bar, .c-mark {
+    will-change: auto;
+  }
+}
