@@ -66,11 +66,11 @@ export default function ContactPage() {
           </p>
 
           <form onSubmit={(e) => e.preventDefault()} className="ct-form w-full max-w-2xl space-y-5">
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Field label="Company Name" type="text" />
               <Field label="Type of Business" type="text" />
             </div>
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Field label="Phone" type="tel" />
               <Field label="Email" type="email" />
             </div>

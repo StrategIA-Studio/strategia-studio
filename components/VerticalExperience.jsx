@@ -288,7 +288,7 @@ export default function VerticalExperience() {
 
           {/* Grid — scorre naturalmente sotto il titolo */}
           <div className="s-works-grid py-20">
-            <div className="grid grid-cols-3 gap-y-14">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-y-14">
               {WORKS.map((w) => (
                 <a key={w.name} className="w-item block" href="#">
                   <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1" }}>
@@ -350,11 +350,11 @@ export default function VerticalExperience() {
               onSubmit={(e) => e.preventDefault()}
               className="c-form w-full max-w-2xl space-y-5"
             >
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Field label="Company Name" type="text" />
                 <Field label="Type of Business" type="text" />
               </div>
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Field label="Phone" type="tel" />
                 <Field label="Email" type="email" />
               </div>

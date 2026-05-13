@@ -125,7 +125,7 @@ export default function WorksPage() {
         <section className="px-6 md:px-10 pb-28">
 
           {[0, 1].map((row) => (
-            <div key={row} className={`wp-row-${row} grid grid-cols-3 gap-x-4 ${row === 0 ? "mb-24" : ""}`}>
+            <div key={row} className={`wp-row-${row} grid grid-cols-2 md:grid-cols-3 gap-x-4 ${row === 0 ? "mb-24" : ""}`}>
               {PROJECTS.slice(row * 3, row * 3 + 3).map((p, i) => {
                 const idx = row * 3 + i;
                 return (

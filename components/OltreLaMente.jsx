@@ -194,7 +194,7 @@ export default function OltreLaMente() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "1fr 48%",
+                gridTemplateColumns: "clamp(120px, 30vw, 1fr) 48%",
                 height: "100%",
                 alignItems: "center",
                 paddingLeft: "5vw",
@@ -263,11 +263,11 @@ export default function OltreLaMente() {
             </p>
 
             <form onSubmit={(e) => e.preventDefault()} className="olm-c-form w-full max-w-2xl space-y-5">
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <OlmField label="Company Name" type="text" />
                 <OlmField label="Type of Business" type="text" />
               </div>
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <OlmField label="Phone" type="tel" />
                 <OlmField label="Email" type="email" />
               </div>
