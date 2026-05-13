@@ -7,12 +7,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const WORKS = [
-  { name: "Voglia di Pizza", img: "/works/voglia-di-pizza.png" },
-  { name: "Expo Energia",    img: "/works/expo-energia.png"    },
-  { name: "Davveroo",        img: "/works/davveroo.png"        },
-  { name: "Mi Dicriju",      img: "/works/mi-dicriju.png"      },
-  { name: "Cellulopoli",     img: "/works/cellulopoli.png"     },
-  { name: "Il Rudere",       img: "/works/il-rudere.png"       },
+  { name: "Voglia di Pizza", img: "/works/voglia-di-pizza.png", slug: "voglia-di-pizza" },
+  { name: "Expo Energia",    img: "/works/expo-energia.png",    slug: "expo-energia"    },
+  { name: "Davveroo",        img: "/works/davveroo.png",        slug: "davveroo"        },
+  { name: "Mi Dicriju",      img: "/works/mi-dicriju.png",      slug: "mi-dicriju"      },
+  { name: "Cellulopoli",     img: "/works/cellulopoli.png",     slug: "cellulopoli"     },
+  { name: "Il Rudere",       img: "/works/il-rudere.png",       slug: "il-rudere"       },
 ];
 
 export default function VerticalExperience() {
@@ -290,7 +290,7 @@ export default function VerticalExperience() {
           <div className="s-works-grid py-20">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-y-14">
               {WORKS.map((w) => (
-                <a key={w.name} className="w-item block" href="#">
+                <a key={w.name} className="w-item block" href={`/works/${w.slug}`}>
                   <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1" }}>
                     <img
                       src={w.img}
