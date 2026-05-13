@@ -65,6 +65,18 @@ a, button { cursor: none; color: inherit; text-decoration: none; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.32); }
 * { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.18) transparent; }
 
+/* ─── Project intro grid — responsive ───────────── */
+.project-intro-grid {
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+@media (min-width: 768px) {
+  .project-intro-grid {
+    grid-template-columns: clamp(280px, 40vw, 520px) 1fr;
+    align-items: stretch;
+  }
+}
+
 /* ─── Performance ────────────────────────────────── */
 .h-word, .m-text, .m-label, .m-btn, .m-unique,
 .w-title, .w-btn, .w-item,

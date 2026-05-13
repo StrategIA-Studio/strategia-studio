@@ -124,8 +124,7 @@ export default function IlRudere() {
         <MarqueeStrip text="IL RUDERE" />
 
         {/* ══ FOTO SX + TESTO DX ══ */}
-        <section className="ir-intro grid gap-16 px-8 md:px-12 py-24"
-          style={{ gridTemplateColumns: "clamp(280px, 40vw, 520px) 1fr", alignItems: "stretch" }}>
+        <section className="ir-intro project-intro-grid grid gap-8 md:gap-16 px-8 md:px-12 py-24">
 
           <div className="ir-img overflow-hidden" style={{ width: "100%", height: "100%", minHeight: "300px" }}>
             <img src="/works/il-rudere.png" alt="Il Rudere"

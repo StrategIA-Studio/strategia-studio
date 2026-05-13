@@ -123,8 +123,7 @@ export default function ExpoEnergia() {
         <MarqueeStrip text="EXPO ENERGIA" />
 
         {/* ══ FOTO SX + TESTO DX ══ */}
-        <section className="ee-intro grid gap-16 px-8 md:px-12 py-24"
-          style={{ gridTemplateColumns: "clamp(280px, 40vw, 520px) 1fr", alignItems: "stretch" }}>
+        <section className="ee-intro project-intro-grid grid gap-8 md:gap-16 px-8 md:px-12 py-24">
 
           <div className="ee-img overflow-hidden" style={{ width: "100%", height: "100%", minHeight: "300px" }}>
             <img src="/works/expo-energia.png" alt="Expo Energia"

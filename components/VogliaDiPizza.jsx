@@ -137,8 +137,7 @@ export default function VogliaDiPizza() {
 
         {/* ══ FOTO SX + TESTO DX — stessa altezza ══ */}
         <section
-          className="vdp-intro grid gap-16 px-8 md:px-12 py-24"
-          style={{ gridTemplateColumns: "clamp(280px, 40vw, 520px) 1fr", alignItems: "stretch" }}
+          className="vdp-intro project-intro-grid grid gap-8 md:gap-16 px-8 md:px-12 py-24"
         >
           {/* SINISTRA — foto si allunga fino al testo */}
           <div className="vdp-img1 overflow-hidden" style={{ width: "100%", height: "100%", minHeight: "300px" }}>
