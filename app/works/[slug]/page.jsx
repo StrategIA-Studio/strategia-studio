@@ -8,6 +8,7 @@ const PROJECTS = {
   "mi-dicriju":      "Mi Dicriju",
   "cellulopoli":     "Cellulopoli",
   "il-rudere":       "Il Rudere",
+  "siri-cafe":       "Siri Café",
 };
 
 export function generateStaticParams() {

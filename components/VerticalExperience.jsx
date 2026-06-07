@@ -13,6 +13,7 @@ const WORKS = [
   { name: "Mi Dicriju",      img: "/works/mi-dicriju.png",      slug: "mi-dicriju"      },
   { name: "Cellulopoli",     img: "/works/cellulopoli.png",     slug: "cellulopoli"     },
   { name: "Il Rudere",       img: "/works/il-rudere.png",       slug: "il-rudere"       },
+  { name: "Siri Café",       img: "/works/siri-cafe.png",       slug: "siri-cafe"       },
 ];
 
 export default function VerticalExperience() {
