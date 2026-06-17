@@ -4,17 +4,9 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import PROJECTS from "@/lib/projects";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const PROJECTS = [
-  { n: "01", name: "Voglia di Pizza", slug: "voglia-di-pizza", img: "/works/voglia-di-pizza.png" },
-  { n: "02", name: "Expo Energia",    slug: "expo-energia",    img: "/works/expo-energia.png"    },
-  { n: "03", name: "Davveroo",        slug: "davveroo",        img: "/works/davveroo.png"        },
-  { n: "04", name: "Mi Dicriju",      slug: "mi-dicriju",      img: "/works/mi-dicriju.png"      },
-  { n: "05", name: "Cellulopoli",     slug: "cellulopoli",     img: "/works/cellulopoli.png"     },
-  { n: "06", name: "Il Rudere",       slug: "il-rudere",       img: "/works/il-rudere.png"       },
-];
 
 export default function WorksPage() {
   const root         = useRef(null);

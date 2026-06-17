@@ -3,18 +3,11 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import PROJECTS from "@/lib/projects";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const WORKS = [
-  { name: "Voglia di Pizza", img: "/works/voglia-di-pizza.png", slug: "voglia-di-pizza" },
-  { name: "Expo Energia",    img: "/works/expo-energia.png",    slug: "expo-energia"    },
-  { name: "Davveroo",        img: "/works/davveroo.png",        slug: "davveroo"        },
-  { name: "Mi Dicriju",      img: "/works/mi-dicriju.png",      slug: "mi-dicriju"      },
-  { name: "Cellulopoli",     img: "/works/cellulopoli.png",     slug: "cellulopoli"     },
-  { name: "Il Rudere",       img: "/works/il-rudere.png",       slug: "il-rudere"       },
-  { name: "Siri Café",       img: "/works/siri-cafe.png",       slug: "siri-cafe"       },
-];
+const WORKS = PROJECTS;
 
 export default function VerticalExperience() {
   const root         = useRef(null);
