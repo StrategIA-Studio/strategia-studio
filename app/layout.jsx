@@ -1,6 +1,7 @@
 import { Barlow } from "next/font/google";
 import "./globals.css";
 import CalendlyButton from "@/components/CalendlyButton";
+import CursorCircle  from "@/components/CursorCircle";
 
 const barlow = Barlow({
   subsets: ["latin"],
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="it" className={barlow.variable}>
       <body>
         {children}
+        <CursorCircle />
         <CalendlyButton />
       </body>
     </html>
