@@ -15,29 +15,6 @@ export default function VerticalExperience() {
   const bgRef        = useRef(null);
 
   useEffect(() => {
-    /* ── cursor ── */
-    const dot    = cursorDot.current;
-
-    let onMove = null;
-    let tick   = null;
-
-    if (dot && circle) {
-      let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-      let cx = mx, cy = my;
-
-      onMove = (e) => {
-        mx = e.clientX; my = e.clientY;
-        gsap.to(dot, { x: mx, y: my, duration: 0.07, ease: "none", overwrite: true });
-      };
-      tick = () => {
-        cx += (mx - cx) * 0.11;
-        cy += (my - cy) * 0.11;
-        gsap.set(circle, { x: cx, y: cy });
-      };
-      window.addEventListener("mousemove", onMove, { passive: true });
-      gsap.ticker.add(tick);
-    }
-
     /* ── GSAP ── */
     const ctx = gsap.context(() => {
 
@@ -184,8 +161,6 @@ export default function VerticalExperience() {
 
     return () => {
       ctx.revert();
-      if (onMove) window.removeEventListener("mousemove", onMove);
-      if (tick)   gsap.ticker.remove(tick);
       wItems.forEach((item, i) => {
         item.removeEventListener("mouseenter", enterHandlers[i]);
         item.removeEventListener("mouseleave", leaveHandler);

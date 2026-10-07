@@ -9,18 +9,9 @@ export default function ContactPage() {
 
   useEffect(() => {
     const bg     = bgRef.current;
-    const dot    = cursorDot.current;
 
     bg.style.backgroundColor = "#00819F";
 
-    let onMove = null, tick = null;
-    if (dot && circle) {
-      let mx = window.innerWidth / 2, my = window.innerHeight / 2, cx = mx, cy = my;
-      onMove = (e) => { mx = e.clientX; my = e.clientY; gsap.to(dot, { x: mx, y: my, duration: 0.07, ease: "none", overwrite: true }); };
-      tick   = () => { cx += (mx - cx) * 0.11; cy += (my - cy) * 0.11; gsap.set(circle, { x: cx, y: cy }); };
-      window.addEventListener("mousemove", onMove, { passive: true });
-      gsap.ticker.add(tick);
-    }
 
     const ctx = gsap.context(() => {
       gsap.set(".ct-title", { opacity: 0, y: 60 });
@@ -37,8 +28,6 @@ export default function ContactPage() {
 
     return () => {
       ctx.revert();
-      if (onMove) window.removeEventListener("mousemove", onMove);
-      if (tick)   gsap.ticker.remove(tick);
     };
   }, []);
 

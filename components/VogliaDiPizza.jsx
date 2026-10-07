@@ -38,19 +38,8 @@ export default function VogliaDiPizza() {
 
   useEffect(() => {
     const bg     = bgRef.current;
-    const dot    = cursorDot.current;
 
     bg.style.backgroundColor = "#0B1E38";
-
-    /* cursore */
-    let onMove = null, tick = null;
-    if (dot && circle) {
-      let mx = window.innerWidth / 2, my = window.innerHeight / 2, cx = mx, cy = my;
-      onMove = (e) => { mx = e.clientX; my = e.clientY; gsap.to(dot, { x: mx, y: my, duration: 0.07, ease: "none", overwrite: true }); };
-      tick   = () => { cx += (mx - cx) * 0.11; cy += (my - cy) * 0.11; gsap.set(circle, { x: cx, y: cy }); };
-      window.addEventListener("mousemove", onMove, { passive: true });
-      gsap.ticker.add(tick);
-    }
 
     const ctx = gsap.context(() => {
 
@@ -103,8 +92,6 @@ export default function VogliaDiPizza() {
 
     return () => {
       ctx.revert();
-      if (onMove) window.removeEventListener("mousemove", onMove);
-      if (tick)   gsap.ticker.remove(tick);
     };
   }, []);
 
