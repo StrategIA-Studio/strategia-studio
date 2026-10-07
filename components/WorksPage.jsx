@@ -12,13 +12,11 @@ export default function WorksPage() {
   const root         = useRef(null);
   const bgRef        = useRef(null);
   const cursorDot    = useRef(null);
-  const cursorCircle = useRef(null);
   const router       = useRouter();
 
   useEffect(() => {
     const bg     = bgRef.current;
     const dot    = cursorDot.current;
-    const circle = cursorCircle.current;
 
     bg.style.backgroundColor = "#0B1E38";
 
@@ -101,7 +99,6 @@ export default function WorksPage() {
     <>
       <div ref={bgRef} style={{ position: "fixed", inset: 0, zIndex: 0, backgroundColor: "#0B1E38" }} />
       <div ref={cursorDot}    className="cursor-dot" />
-      <div ref={cursorCircle} className="cursor-circle" />
 
       <main ref={root} className="overflow-x-hidden" style={{ position: "relative", zIndex: 1 }}>
 

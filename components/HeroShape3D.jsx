@@ -11,7 +11,7 @@ export default function HeroDrawCanvas() {
 
     const ctx = canvas.getContext("2d");
     const points = [];
-    const MAX = 90;
+    const MAX = 55;
     let animId;
 
     const resize = () => {
@@ -23,15 +23,27 @@ export default function HeroDrawCanvas() {
     resize();
     window.addEventListener("resize", resize, { passive: true });
 
-    const onMouse = (e) => {
+    const addPoint = (clientX, clientY) => {
       const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
       if (x < 0 || x > rect.width || y < 0 || y > rect.height) return;
       points.push({ x, y });
       if (points.length > MAX) points.shift();
     };
+
+    /* mouse */
+    const onMouse = (e) => addPoint(e.clientX, e.clientY);
     window.addEventListener("mousemove", onMouse, { passive: true });
+
+    /* touch */
+    const onTouch = (e) => {
+      for (let i = 0; i < e.touches.length; i++) {
+        addPoint(e.touches[i].clientX, e.touches[i].clientY);
+      }
+    };
+    window.addEventListener("touchmove",  onTouch, { passive: true });
+    window.addEventListener("touchstart", onTouch, { passive: true });
 
     const draw = () => {
       animId = requestAnimationFrame(draw);
@@ -42,24 +54,22 @@ export default function HeroDrawCanvas() {
       if (points.length < 3) return;
 
       for (let i = 2; i < points.length; i++) {
-        const t  = i / points.length;
-        const alpha = t * 0.75;
-        const width = t * 4.5;
+        const t     = i / points.length;
+        const alpha = t * 0.82;
+        const width = t * 5;
+
+        const mx = (points[i - 1].x + points[i].x) / 2;
+        const my = (points[i - 1].y + points[i].y) / 2;
 
         ctx.beginPath();
         ctx.moveTo(points[i - 1].x, points[i - 1].y);
-        ctx.quadraticCurveTo(
-          points[i - 1].x,
-          points[i - 1].y,
-          (points[i - 1].x + points[i].x) / 2,
-          (points[i - 1].y + points[i].y) / 2
-        );
-        ctx.strokeStyle = `rgba(0,198,240,${alpha})`;
-        ctx.lineWidth   = width;
-        ctx.lineCap     = "round";
-        ctx.lineJoin    = "round";
-        ctx.shadowColor = "#00c6f0";
-        ctx.shadowBlur  = 18;
+        ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, mx, my);
+        ctx.strokeStyle  = `rgba(0,198,240,${alpha})`;
+        ctx.lineWidth    = width;
+        ctx.lineCap      = "round";
+        ctx.lineJoin     = "round";
+        ctx.shadowColor  = "#00c6f0";
+        ctx.shadowBlur   = 20;
         ctx.stroke();
       }
     };
@@ -67,8 +77,10 @@ export default function HeroDrawCanvas() {
 
     return () => {
       cancelAnimationFrame(animId);
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", onMouse);
+      window.removeEventListener("resize",      resize);
+      window.removeEventListener("mousemove",   onMouse);
+      window.removeEventListener("touchmove",   onTouch);
+      window.removeEventListener("touchstart",  onTouch);
     };
   }, []);
 

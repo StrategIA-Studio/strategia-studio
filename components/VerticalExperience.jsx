@@ -13,13 +13,11 @@ const WORKS = PROJECTS;
 export default function VerticalExperience() {
   const root         = useRef(null);
   const cursorDot    = useRef(null);
-  const cursorCircle = useRef(null);
   const bgRef        = useRef(null);
 
   useEffect(() => {
     /* ── cursor ── */
     const dot    = cursorDot.current;
-    const circle = cursorCircle.current;
 
     let onMove = null;
     let tick   = null;
@@ -200,7 +198,6 @@ export default function VerticalExperience() {
     <>
       <div ref={bgRef} style={{ position: "fixed", inset: 0, zIndex: 0, backgroundColor: "#0B1E38", willChange: "background-color" }} />
       <div ref={cursorDot}    className="cursor-dot" />
-      <div ref={cursorCircle} className="cursor-circle" />
 
       <main ref={root} className="overflow-x-hidden" style={{ position: "relative", zIndex: 1 }}>
 

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import HeroDrawCanvas from "@/components/HeroShape3D";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,12 +64,10 @@ export default function OltreLaMente() {
   const root         = useRef(null);
   const bgRef        = useRef(null);
   const cursorDot    = useRef(null);
-  const cursorCircle = useRef(null);
 
   useEffect(() => {
     const bg     = bgRef.current;
     const dot    = cursorDot.current;
-    const circle = cursorCircle.current;
 
     bg.style.backgroundColor = HERO.bg;
 
@@ -170,12 +169,12 @@ export default function OltreLaMente() {
     <>
       <div ref={bgRef} style={{ position: "fixed", inset: 0, zIndex: 0, backgroundColor: HERO.bg }} />
       <div ref={cursorDot}    className="cursor-dot" />
-      <div ref={cursorCircle} className="cursor-circle" />
 
       <main ref={root} className="overflow-x-hidden" style={{ position: "relative", zIndex: 1 }}>
 
         {/* ══ HERO — centrato ══ */}
         <section className="olm-hero relative h-screen flex flex-col items-center justify-center">
+          <HeroDrawCanvas />
           <div className="text-center px-8">
             <h1 className="olm-hero-line font-heading font-black uppercase text-white"
               style={{ fontSize: "clamp(2.4rem, 8.5vw, 10.5rem)", lineHeight: 0.86, letterSpacing: "-0.04em", whiteSpace: "nowrap" }}>
