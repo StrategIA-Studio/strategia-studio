@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PROJECTS from "@/lib/projects";
+import HeroShape3D from "@/components/HeroShape3D";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -209,6 +210,9 @@ export default function VerticalExperience() {
             Tutto scroll-linked e reversibile.
         ═════════════════════════════════════════════════════════ */}
         <section id="home" className="s-scene relative h-screen overflow-hidden">
+
+          {/* 3D shape — destra, come 3KDM */}
+          <HeroShape3D />
 
           {/* FASE 1 — titolo principale */}
           <div className="absolute inset-0 flex items-center justify-center">
