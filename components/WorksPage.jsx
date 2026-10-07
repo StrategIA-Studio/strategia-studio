@@ -29,7 +29,8 @@ export default function WorksPage() {
         .to(".wp-hero", { scale: 1.00, duration: 0.38, ease: "power3.out" });
 
       /* ── SCROLL REVEAL — riga per riga ── */
-      ["wp-row-0", "wp-row-1"].forEach((row) => {
+      const numRows = Math.ceil(PROJECTS.length / 3);
+      Array.from({ length: numRows }, (_, r) => `wp-row-${r}`).forEach((row) => {
         gsap.set(`.${row} .wp-img`, { clipPath: "inset(0 0 100% 0)" });
         gsap.set(`.${row} .wp-meta`, { opacity: 0, y: 14 });
 
@@ -98,8 +99,8 @@ export default function WorksPage() {
         {/* ══ GRIGLIA 3+3 ══ */}
         <section className="px-6 md:px-10 pb-28">
 
-          {[0, 1].map((row) => (
-            <div key={row} className={`wp-row-${row} grid grid-cols-2 md:grid-cols-3 gap-x-4 ${row === 0 ? "mb-24" : ""}`}>
+          {Array.from({ length: Math.ceil(PROJECTS.length / 3) }, (_, row) => (
+            <div key={row} className={`wp-row-${row} grid grid-cols-2 md:grid-cols-3 gap-x-4 ${row < Math.ceil(PROJECTS.length / 3) - 1 ? "mb-24" : ""}`}>
               {PROJECTS.slice(row * 3, row * 3 + 3).map((p, i) => {
                 const idx = row * 3 + i;
                 return (
