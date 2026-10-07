@@ -2,94 +2,73 @@
 
 import { useEffect, useRef } from "react";
 
-export default function HeroShape3D() {
+export default function HeroDrawCanvas() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    const points = [];
+    const MAX = 90;
     let animId;
-    let renderer, scene, camera, mesh;
 
-    async function init() {
-      const THREE = await import("three");
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width  = rect.width  * devicePixelRatio;
+      canvas.height = rect.height * devicePixelRatio;
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+    };
+    resize();
+    window.addEventListener("resize", resize, { passive: true });
 
-      const canvas = canvasRef.current;
-      if (!canvas) return;
+    const onMouse = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      if (x < 0 || x > rect.width || y < 0 || y > rect.height) return;
+      points.push({ x, y });
+      if (points.length > MAX) points.shift();
+    };
+    window.addEventListener("mousemove", onMouse, { passive: true });
 
-      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
-      renderer.setClearColor(0x000000, 0);
+    const draw = () => {
+      animId = requestAnimationFrame(draw);
+      const w = canvas.width  / devicePixelRatio;
+      const h = canvas.height / devicePixelRatio;
+      ctx.clearRect(0, 0, w, h);
 
-      scene = new THREE.Scene();
+      if (points.length < 3) return;
 
-      camera = new THREE.PerspectiveCamera(45, canvas.offsetWidth / canvas.offsetHeight, 0.1, 100);
-      camera.position.set(0, 0, 5);
+      for (let i = 2; i < points.length; i++) {
+        const t  = i / points.length;
+        const alpha = t * 0.75;
+        const width = t * 4.5;
 
-      /* TorusKnot — forma a spirale simile a 3KDM */
-      const geo = new THREE.TorusKnotGeometry(1.1, 0.32, 220, 24, 2, 3);
-      const mat = new THREE.MeshStandardMaterial({
-        color: new THREE.Color("#00819F"),
-        roughness: 0.18,
-        metalness: 0.72,
-        emissive: new THREE.Color("#004f60"),
-        emissiveIntensity: 0.35,
-      });
-      mesh = new THREE.Mesh(geo, mat);
-      scene.add(mesh);
-
-      /* Luci */
-      const ambLight = new THREE.AmbientLight(0xffffff, 0.6);
-      scene.add(ambLight);
-
-      const dirLight = new THREE.DirectionalLight(0xffffff, 1.8);
-      dirLight.position.set(3, 5, 4);
-      scene.add(dirLight);
-
-      const rimLight = new THREE.DirectionalLight(0x00c6f0, 1.2);
-      rimLight.position.set(-4, -2, -3);
-      scene.add(rimLight);
-
-      /* Mouse parallax */
-      let mx = 0, my = 0;
-      const onMouse = (e) => {
-        mx = (e.clientX / window.innerWidth  - 0.5) * 2;
-        my = (e.clientY / window.innerHeight - 0.5) * 2;
-      };
-      window.addEventListener("mousemove", onMouse, { passive: true });
-
-      /* Resize */
-      const onResize = () => {
-        if (!canvas) return;
-        renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
-        camera.aspect = canvas.offsetWidth / canvas.offsetHeight;
-        camera.updateProjectionMatrix();
-      };
-      window.addEventListener("resize", onResize);
-
-      /* Loop */
-      const clock = new THREE.Clock();
-      const animate = () => {
-        animId = requestAnimationFrame(animate);
-        const t = clock.getElapsedTime();
-        mesh.rotation.x = t * 0.28 + my * 0.18;
-        mesh.rotation.y = t * 0.18 + mx * 0.22;
-        renderer.render(scene, camera);
-      };
-      animate();
-
-      canvas._cleanup = () => {
-        cancelAnimationFrame(animId);
-        window.removeEventListener("mousemove", onMouse);
-        window.removeEventListener("resize", onResize);
-        renderer.dispose();
-      };
-    }
-
-    init();
+        ctx.beginPath();
+        ctx.moveTo(points[i - 1].x, points[i - 1].y);
+        ctx.quadraticCurveTo(
+          points[i - 1].x,
+          points[i - 1].y,
+          (points[i - 1].x + points[i].x) / 2,
+          (points[i - 1].y + points[i].y) / 2
+        );
+        ctx.strokeStyle = `rgba(0,198,240,${alpha})`;
+        ctx.lineWidth   = width;
+        ctx.lineCap     = "round";
+        ctx.lineJoin    = "round";
+        ctx.shadowColor = "#00c6f0";
+        ctx.shadowBlur  = 18;
+        ctx.stroke();
+      }
+    };
+    draw();
 
     return () => {
-      const canvas = canvasRef.current;
-      if (canvas?._cleanup) canvas._cleanup();
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", onMouse);
     };
   }, []);
 
@@ -98,9 +77,8 @@ export default function HeroShape3D() {
       ref={canvasRef}
       style={{
         position: "absolute",
-        top: 0,
-        right: 0,
-        width: "55%",
+        inset: 0,
+        width: "100%",
         height: "100%",
         pointerEvents: "none",
         zIndex: 0,

@@ -109,7 +109,7 @@ export default function ExpoEnergia() {
       <main ref={root} className="overflow-x-hidden" style={{ position: "relative", zIndex: 1 }}>
 
         {/* ══ HERO ══ */}
-        <section className="relative h-screen flex flex-col justify-end px-8 md:px-12 pb-16">
+        <section className="relative px-8 md:px-12 pt-32 md:pt-40 pb-16">
           <p className="ee-label font-body font-light uppercase tracking-[0.32em] text-white/45 mb-5"
             style={{ fontSize: "0.62rem" }}>
             Creative Direction
