@@ -12,7 +12,6 @@ const WORKS = PROJECTS;
 
 export default function VerticalExperience() {
   const root         = useRef(null);
-  const cursorDot    = useRef(null);
   const bgRef        = useRef(null);
 
   useEffect(() => {
@@ -197,7 +196,6 @@ export default function VerticalExperience() {
   return (
     <>
       <div ref={bgRef} style={{ position: "fixed", inset: 0, zIndex: 0, backgroundColor: "#0B1E38", willChange: "background-color" }} />
-      <div ref={cursorDot}    className="cursor-dot" />
 
       <main ref={root} className="overflow-x-hidden" style={{ position: "relative", zIndex: 1 }}>
 

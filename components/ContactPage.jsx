@@ -6,7 +6,6 @@ import gsap from "gsap";
 export default function ContactPage() {
   const root      = useRef(null);
   const bgRef     = useRef(null);
-  const cursorDot    = useRef(null);
 
   useEffect(() => {
     const bg     = bgRef.current;
@@ -46,7 +45,6 @@ export default function ContactPage() {
   return (
     <>
       <div ref={bgRef} style={{ position: "fixed", inset: 0, zIndex: 0, backgroundColor: "#00819F" }} />
-      <div ref={cursorDot}    className="cursor-dot" />
 
       <main ref={root} className="relative z-[1] min-h-screen overflow-x-hidden">
 

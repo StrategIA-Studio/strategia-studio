@@ -17,7 +17,6 @@ const PARAS = [
 export default function PaolanaCalcio() {
   const root         = useRef(null);
   const bgRef        = useRef(null);
-  const cursorDot    = useRef(null);
   const videoRef     = useRef(null);
   const [playing, setPlaying] = useState(false);
   const [muted,   setMuted]   = useState(true);
@@ -96,7 +95,6 @@ export default function PaolanaCalcio() {
   return (
     <>
       <div ref={bgRef} style={{ position: "fixed", inset: 0, zIndex: 0, backgroundColor: "#0B1E38" }} />
-      <div ref={cursorDot}    className="cursor-dot" />
 
       <main ref={root} className="overflow-x-hidden" style={{ position: "relative", zIndex: 1 }}>
 

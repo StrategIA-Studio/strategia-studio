@@ -63,7 +63,6 @@ const CHAPTERS = [
 export default function OltreLaMente() {
   const root         = useRef(null);
   const bgRef        = useRef(null);
-  const cursorDot    = useRef(null);
 
   useEffect(() => {
     const bg     = bgRef.current;
@@ -168,7 +167,6 @@ export default function OltreLaMente() {
   return (
     <>
       <div ref={bgRef} style={{ position: "fixed", inset: 0, zIndex: 0, backgroundColor: HERO.bg }} />
-      <div ref={cursorDot}    className="cursor-dot" />
 
       <main ref={root} className="overflow-x-hidden" style={{ position: "relative", zIndex: 1 }}>
 

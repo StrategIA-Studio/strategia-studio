@@ -11,7 +11,7 @@ export default function HeroDrawCanvas() {
 
     const ctx = canvas.getContext("2d");
     const points = [];
-    const MAX = 55;
+    const MAX = 28;
     let animId;
 
     const resize = () => {
